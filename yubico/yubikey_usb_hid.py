@@ -27,6 +27,7 @@ import struct
 import time
 import sys
 import usb
+import math
 
 # Various USB/HID parameters
 _USB_TYPE_CLASS         = (0x01 << 5)
@@ -431,7 +432,7 @@ class YubiKeyUSBHID(YubiKey):
 
             if not finished:
                 wait_num -= 1
-                if wait_num == 0:
+                if math.floor(wait_num) == 0:
                     if mode is 'nand':
                         reason = 'Timed out waiting for YubiKey to clear status 0x%x' % mask
                     else:
